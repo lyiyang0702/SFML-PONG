@@ -1,8 +1,11 @@
 #include "GameManager.h"
+
 void GameManager::Update() {
 
 	while (window->isOpen())
 	{
+
+		//test.move(0, 1 * 0.1);
 		this->ProcessEvent();
 		if (currentstate != 0 && isPlaying) {
 			delete currentstate;
@@ -32,11 +35,26 @@ void GameManager::HandleInput(sf::Keyboard::Key key, bool isPressed) {
 			isTwoPlayerMode = true;
 			isPlaying = true;
 		}
+		if (key == sf::Keyboard::Key::P) {
+			isPaused = !isPaused;
+		}
 
 		if (key == sf::Keyboard::Key::Num2) {
 			printf("Entered one player mode \n");
 			isPlaying = true;
 		}
+		if (!isPlaying) return;
+		if (isPaused) return;
+		
+		if (key == sf::Keyboard::Key::W) {;
+			printf("Move Up\n");
+
+		}
+		if (key == sf::Keyboard::Key::S) {
+			printf("Move Down\n");
+			//mainGame->leftPaddle.Move(0, -1);
+		}
+
 	}
 
 }
@@ -59,16 +77,6 @@ void GameManager::ProcessEvent() {
 		default:
 			break;
 		}
-		
-			
-		/*if (event.type == sf::Event::KeyPressed) {
-			if (event.key.code == sf::Keyboard::F) {
-				if (!startGame) {
-					
-					startGame = true;
-				}
-			}
-		}*/
 	}
 
 }
@@ -78,6 +86,7 @@ void GameManager::Start() {
 
 void GameManager::Render() {
 	window->clear();
+	window->draw(test);
 	currentstate->Render();
 	window->display();
 }

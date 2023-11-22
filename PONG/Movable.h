@@ -26,8 +26,8 @@ public:
 	virtual void Render(sf::RenderWindow* window);
 	virtual void SetPos(float x, float y);
 	virtual sf::Vector2f GetPos() { return sf::Vector2f(0, 0); };
-	sf::CircleShape GetCircleShape() { return circleShape; };
-	sf::RectangleShape GetRectShape() { return rectShape; };
+	sf::CircleShape& GetCircleShape() { return circleShape; };
+	sf::RectangleShape& GetRectShape() { return rectShape; };
 	
 };
 

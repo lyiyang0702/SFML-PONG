@@ -42,8 +42,8 @@ int main()
 	//	currentstate = nextstate;
 	//}
 	//bool isBouncing = false;
-	GameManager& gm = GameManager::GetInstance();
-	gm.Update();
+	//GameManager& gm = GameManager::GetInstance();
+	//gm.Update();
 	//while (gm->window->isOpen())
 	//{
 	//	sf::Event event;

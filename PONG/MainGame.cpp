@@ -22,8 +22,8 @@ void MainGame::InitPlayers() {
 }
 
 void  MainGame::InitVriables() {
-	leftPaddle.SetPos(10, window->getSize().y / 2.);
-	rightPaddle.SetPos(window->getSize().x - 10, window->getSize().y / 2.);
+	leftPaddle.SetPos(20, window->getSize().y / 2.);
+	rightPaddle.SetPos(window->getSize().x - 20, window->getSize().y / 2.);
 	ball.SetPos(window->getSize().x / 2., window->getSize().y / 2.);
 	middleLine = sf::RectangleShape(sf::Vector2f(5., window->getSize().y));
 	middleLine.setPosition(window->getSize().x / 2 -2.5, 0);
@@ -41,6 +41,6 @@ void MainGame::InitScoreText(sf::Text& text, std::string s) {
 	text.setOrigin(rect.width / 2, rect.height / 2);
 }
 
-void  MainGame::Update(sf::Time deltaTime) {
+void  MainGame::Update() {
 
 }

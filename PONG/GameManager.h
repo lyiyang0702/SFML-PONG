@@ -6,7 +6,7 @@ class GameManager
 {
 
 private:
-
+	sf::RectangleShape test;
 	bool isPaused = false;
 	bool isPlaying = false;
 	bool hasStarted = false;
@@ -17,6 +17,8 @@ private:
 	void Render();
 	GameState* currentstate;
 	GameManager() {
+		test.setSize(sf::Vector2f(10., 10.));
+		test.setPosition(100., 100.);
 		currentstate = new TitleScreen;
 		window = new sf::RenderWindow(sf::VideoMode(800, 600), "PONG");
 		currentstate->Run(window);

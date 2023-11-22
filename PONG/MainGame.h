@@ -10,8 +10,6 @@ enum BallFlags {
 class MainGame: public GameState
 {
 private:
-	Paddle leftPaddle;
-	Paddle rightPaddle;
 	int leftScore = 0;
 	int rightScore = 0;
 	Ball ball;
@@ -22,9 +20,11 @@ private:
 	void InitPlayers();
 	void InitScoreText(sf::Text& text, std::string s);
 public:
+	Paddle leftPaddle;
+	Paddle rightPaddle;
 	MainGame() {};
 	~MainGame() {};
-	void Update(sf::Time deltaTime);
+	void Update();
 	void Render() override;
 	void Run(sf::RenderWindow* win) override;
 	//GameState* Run() override;
