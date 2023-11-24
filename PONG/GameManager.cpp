@@ -1,23 +1,32 @@
 #include "GameManager.h"
-
-void GameManager::Update() {
+void GameManager::Run() {
+	
 
 	while (window->isOpen())
 	{
-
-		//test.move(0, 1 * 0.1);
+		deltaTime = clock.restart().asSeconds();
 		this->ProcessEvent();
-		if (currentstate != 0 && isPlaying) {
-			delete currentstate;
-			GameState* nextstate = new MainGame;
-			currentstate = nextstate;
-			currentstate->Run(window);
-		}
-
 		
+		this->Update(deltaTime);
+
+
 		Render();
 		
 
+	}
+}
+void GameManager::Update(float dt) {
+	//printf("%f\n", dt);
+	currentstate->Update(dt);
+}
+
+void GameManager::SwitchScene() {
+	if (currentstate != 0 && isPlaying) {
+		delete currentstate;
+		mainScreen = new MainGame(window, 0, 0);
+		GameState* nextstate = mainScreen;
+		currentstate = nextstate;
+		currentstate->Run();
 	}
 }
 void GameManager::HandleInput(sf::Keyboard::Key key, bool isPressed) {
@@ -27,13 +36,13 @@ void GameManager::HandleInput(sf::Keyboard::Key key, bool isPressed) {
 			if (hasStarted) return;
 			printf("Start Game\n");
 			hasStarted = true;
-			TitleScreen* titleScreen = (TitleScreen*)currentstate;
 			titleScreen->SelectPlayerMode();
 		}
 		if (key == sf::Keyboard::Key::Num1) {
 			printf("Entered one player mode \n");
 			isTwoPlayerMode = true;
 			isPlaying = true;
+			this->SwitchScene();
 		}
 		if (key == sf::Keyboard::Key::P) {
 			isPaused = !isPaused;
@@ -42,19 +51,26 @@ void GameManager::HandleInput(sf::Keyboard::Key key, bool isPressed) {
 		if (key == sf::Keyboard::Key::Num2) {
 			printf("Entered one player mode \n");
 			isPlaying = true;
+			this->SwitchScene();
 		}
 		if (!isPlaying) return;
 		if (isPaused) return;
 		
 		if (key == sf::Keyboard::Key::W) {;
 			printf("Move Up\n");
-
+			mainScreen->leftPaddle.Move(0, -1,deltaTime);
 		}
 		if (key == sf::Keyboard::Key::S) {
 			printf("Move Down\n");
-			//mainGame->leftPaddle.Move(0, -1);
+			mainScreen->leftPaddle.Move(0, 1, deltaTime);
 		}
 
+		if (key == sf::Keyboard::Key::Down) {
+			mainScreen->rightPaddle.Move(0, 1, deltaTime);
+		}
+		if (key == sf::Keyboard::Key::Up) {
+			mainScreen->rightPaddle.Move(0, -1, deltaTime);
+		}
 	}
 
 }
@@ -86,7 +102,7 @@ void GameManager::Start() {
 
 void GameManager::Render() {
 	window->clear();
-	window->draw(test);
+	//window->draw(test);
 	currentstate->Render();
 	window->display();
 }

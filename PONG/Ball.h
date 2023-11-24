@@ -5,21 +5,28 @@
 class Ball: public Movable
 {
 private:
-	const float MAX_SPEED = 10.0;
+	const float START_SPEED = 500.0;
+	//const float MAX_SPEED = 10.0;
 	const float RADIUS = 10.0;
+
 public:
 	enum State {
+		Starting,
 		Bouncing,
 		Disappear
 	};
 
-
-	Ball() :Movable(sf::CircleShape(10)){
+	State ballState;
+	Ball() {
+		/*printf("%f,%f\n", WIDTH, HEIGHT);*/
+		this->circleShape = sf::CircleShape(RADIUS);
 		circleShape.setOrigin(sf::Vector2f(circleShape.getRadius(), circleShape.getRadius()));
+		this->speed = START_SPEED;
+		ballState = Starting;
+		this->speed = START_SPEED;
 	};
 	~Ball() {};
 	void Update() override {};
-	void Init() override;
 	sf::Vector2f GetPos() override;
 };
 

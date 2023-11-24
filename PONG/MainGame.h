@@ -10,9 +10,12 @@ enum BallFlags {
 class MainGame: public GameState
 {
 private:
+	const float PI = 3.1415926;
+	const float START_RADIAN = PI / 4;
+	float currentRadian = 0;
 	int leftScore = 0;
 	int rightScore = 0;
-	Ball ball;
+
 	sf::RectangleShape middleLine;
 	sf::Text leftScoreText;
 	sf::Text rightScoreText;
@@ -22,11 +25,12 @@ private:
 public:
 	Paddle leftPaddle;
 	Paddle rightPaddle;
-	MainGame() {};
+	Ball ball;
+	MainGame(sf::RenderWindow* win, int leftScore, int rightScore);
 	~MainGame() {};
-	void Update();
+	void Update(float dt)override;
 	void Render() override;
-	void Run(sf::RenderWindow* win) override;
+	void Run() override;
 	//GameState* Run() override;
 
 

@@ -1,6 +1,9 @@
 #include "TitleScreen.h"
 #include "GameManager.h"
 //GameManager& gm = GameManager::GetInstance();
+TitleScreen::TitleScreen(sf::RenderWindow* win) : GameState(win) {
+	promptString = "Press F To START";
+}
 void TitleScreen::SelectPlayerMode() {
 	this->UpdatePrompt();
 	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)) {
@@ -20,7 +23,7 @@ void TitleScreen::DisplayTitle() {
 	title.setString("PONG");
 	auto rect = title.getLocalBounds();
 	title.setOrigin(rect.width / 2, rect.height / 2);
-	title.setPosition(sf::Vector2f(window->getSize().x / 2, window->getSize().y/4));
+	title.setPosition(sf::Vector2f(RES_X / 2, RES_Y/4));
 	title.setCharacterSize(50);
 	window->draw(title);
 }
@@ -29,7 +32,7 @@ void TitleScreen::DisplayPrompt() {
 	prompt.setString(promptString);
 	auto rect = prompt.getLocalBounds();
 	prompt.setOrigin(rect.width / 2, rect.height / 2);
-	prompt.setPosition(sf::Vector2f(window->getSize().x / 2, window->getSize().y / 2 +100));
+	prompt.setPosition(sf::Vector2f(RES_X / 2, RES_Y / 2 +100));
 	prompt.setCharacterSize(24);
 	//std::string s = prompt.getString();
 	//std::cout << s << std::endl;
@@ -44,8 +47,8 @@ void TitleScreen::Render() {
 	DisplayPrompt();
 }
 
-void TitleScreen::Run(sf::RenderWindow* win) {
-	this->InitWindow(win);
+void TitleScreen::Run() {
+
 }
 //GameState* TitleScreen::Run() {
 //

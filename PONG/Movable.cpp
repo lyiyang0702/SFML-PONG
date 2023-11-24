@@ -2,11 +2,16 @@
 
 Movable:: ~Movable() {};
 void Movable::Update() {};
-void Movable::Init() {};
-void Movable::Move(const float dirX, const float dirY) {
+void Movable::Init(float resX, float resY) {
+	this->resolutionX = resX;
+	this->resolutionY = resY;
+};
+void Movable::Move(const float dirX, const float dirY,float dt) {
 	//printf("%f,%f,%f\n", dirX,dirY,speed);
-	this->circleShape.move(dirX * speed, dirY * speed);
-	this->rectShape.move(dirX * speed, dirY * speed);
+	this->circleShape.move(dirX * speed * dt, dirY * speed * dt);
+	this->rectShape.move(dirX * speed * dt, dirY * speed* dt);
+	BoundMovable(resolutionX, resolutionY);
+	//printf("%f,%f\n", rectShape.getPosition().x, rectShape.getPosition().y);
 }
 
 void Movable::Render(sf::RenderWindow* window) {

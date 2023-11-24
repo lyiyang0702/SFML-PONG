@@ -3,18 +3,24 @@
 class Paddle : public Movable
 {
 private:
-	const float HEIGHT = 50.0;
+	const float START_SPEED = 10000.0;
+	const float HEIGHT = 80.0;
 	const float WIDTH = 10.0;
 	const float MAX_SPEED = 10.0;
 
 public:
 	bool isAI = false;
-	Paddle() :Movable(sf::RectangleShape(sf::Vector2f(10,50))){
-		rectShape.setOrigin(sf::Vector2f(rectShape.getSize().x / 2, rectShape.getSize().y / 2));
+	
+	Paddle(){
+		/*printf("%f,%f\n", WIDTH, HEIGHT);*/
+		this->rectShape = sf::RectangleShape(sf::Vector2f(WIDTH, HEIGHT));
+		this->rectShape.setOrigin(sf::Vector2f(WIDTH / 2, HEIGHT / 2));
+		this->speed = START_SPEED;
 	};
 	~Paddle() {};
 
 	void Update() override;
 	sf::Vector2f GetPos() override;
+	void BoundMovable(float resoultionX, float resolutionY) override;
 };
 

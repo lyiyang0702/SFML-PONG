@@ -12,16 +12,14 @@ private:
 	void DisplayPrompt();
 	void UpdatePrompt();
 public:
-	TitleScreen() {
+	TitleScreen(sf::RenderWindow* win);
 
-		promptString = "Press F To START";
-	};
 	~TitleScreen() {
-	
+		printf("Destroied Title Screen\n");
 	};
 	void SelectPlayerMode();
 	void Render() override;
-	void Run(sf::RenderWindow* win) override;
+	void Run() override;
 	//GameState* Run() override;
 };
 

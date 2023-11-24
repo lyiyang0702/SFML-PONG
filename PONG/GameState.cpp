@@ -1,5 +1,5 @@
 #include "GameState.h"
-void GameState::InitWindow(sf::RenderWindow* window) {
-	this->window = window;
+void GameState::InitWindow(sf::RenderWindow& window) {
+	
 }
 
