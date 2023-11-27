@@ -1,18 +1,16 @@
 #include "GameManager.h"
 void GameManager::Run() {
-	
-
 	while (window->isOpen())
 	{
-		deltaTime = clock.restart().asSeconds();
-		this->ProcessEvent();
+
+			deltaTime = clock.restart().asSeconds();
+			this->ProcessEvent();
+			if (!isPaused) {
+				this->Update(deltaTime);
+				Render();
+			}
+
 		
-		this->Update(deltaTime);
-
-
-		Render();
-		
-
 	}
 }
 void GameManager::Update(float dt) {
@@ -40,29 +38,33 @@ void GameManager::HandleInput(sf::Keyboard::Key key, bool isPressed) {
 		}
 		if (key == sf::Keyboard::Key::Num1) {
 			printf("Entered one player mode \n");
-			isTwoPlayerMode = true;
+			isTwoPlayerMode = false;
 			isPlaying = true;
 			this->SwitchScene();
 		}
 		if (key == sf::Keyboard::Key::P) {
 			isPaused = !isPaused;
+			std::cout << isPaused << std::endl;
 		}
 
 		if (key == sf::Keyboard::Key::Num2) {
 			printf("Entered one player mode \n");
 			isPlaying = true;
+			isTwoPlayerMode = true;
 			this->SwitchScene();
 		}
 		if (!isPlaying) return;
 		if (isPaused) return;
 		
-		if (key == sf::Keyboard::Key::W) {;
-			printf("Move Up\n");
-			mainScreen->leftPaddle.Move(0, -1,deltaTime);
-		}
-		if (key == sf::Keyboard::Key::S) {
-			printf("Move Down\n");
-			mainScreen->leftPaddle.Move(0, 1, deltaTime);
+		if (isTwoPlayerMode) {
+			if (key == sf::Keyboard::Key::W) {
+				printf("Move Up\n");
+				mainScreen->leftPaddle.Move(0, -1, deltaTime);
+			}
+			if (key == sf::Keyboard::Key::S) {
+				printf("Move Down\n");
+				mainScreen->leftPaddle.Move(0, 1, deltaTime);
+			}
 		}
 
 		if (key == sf::Keyboard::Key::Down) {

@@ -17,7 +17,6 @@ protected:
 	void InitWindow(sf::RenderWindow& win);
 	float RES_X = 0;
 	float RES_Y = 0;
-
 public:
 	GameState(sf::RenderWindow* win):window(win) {
 		if (!font.loadFromFile("font.ttf"))

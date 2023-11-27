@@ -13,9 +13,7 @@ private:
 	void HandleInput(sf::Keyboard::Key key, bool isPressed);
 	void Start();
 	void Render();
-	GameState* currentstate;
-	TitleScreen* titleScreen;
-	MainGame* mainScreen = nullptr;
+
 	sf::Clock clock;
 	float deltaTime = 0;
 	GameManager() {
@@ -30,6 +28,9 @@ private:
 	GameManager(const GameManager&) = delete;
 	GameManager& operator=(const GameManager&) = delete;
 public:
+	GameState* currentstate;
+	TitleScreen* titleScreen;
+	MainGame* mainScreen = nullptr;
 	bool isTwoPlayerMode = false;
 	sf::RenderWindow* window;
 	void Run();

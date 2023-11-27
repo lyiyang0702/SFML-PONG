@@ -9,16 +9,16 @@ protected:
 	sf::RectangleShape rectShape;
 	float resolutionX = 0;
 	float resolutionY = 0;
-	float speed = 0;
+	float speed = 0.0;
 
 public:
 
 	//Movable(sf::CircleShape circle) :circleShape(circle) {};	
 	//Movable(sf::RectangleShape rect) :rectShape(rect) {};
 
-	virtual ~Movable();
+	virtual ~Movable() {};
 	virtual void Init(float resX, float resY);
-	virtual void Update();
+	virtual void Update(float deltaTime);
 	virtual void Move(const float dirX, const float dirY, float dt);
 	virtual void Render(sf::RenderWindow* window);
 	virtual void SetPos(float x, float y);

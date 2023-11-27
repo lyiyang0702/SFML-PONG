@@ -1,7 +1,7 @@
 #include "Movable.h"
 
-Movable:: ~Movable() {};
-void Movable::Update() {};
+//Movable:: ~Movable() {};
+void Movable::Update(float deltaTime) {};
 void Movable::Init(float resX, float resY) {
 	this->resolutionX = resX;
 	this->resolutionY = resY;
@@ -11,7 +11,7 @@ void Movable::Move(const float dirX, const float dirY,float dt) {
 	this->circleShape.move(dirX * speed * dt, dirY * speed * dt);
 	this->rectShape.move(dirX * speed * dt, dirY * speed* dt);
 	BoundMovable(resolutionX, resolutionY);
-	//printf("%f,%f\n", rectShape.getPosition().x, rectShape.getPosition().y);
+	//printf("%f,%f\n", circleShape.getPosition().x, circleShape.getPosition().y);
 }
 
 void Movable::Render(sf::RenderWindow* window) {
