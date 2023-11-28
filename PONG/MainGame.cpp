@@ -37,11 +37,11 @@ void  MainGame::InitVriables() {
 	rightPaddle.Init(RES_X, RES_Y,Paddle::right);
 	ball->Init(RES_X, RES_Y);
 	middleLine = sf::RectangleShape(sf::Vector2f(5., RES_Y));
-	middleLine.setPosition(RES_X / 2 -2.5, 0);
+	middleLine.setPosition(RES_X / 2 -2.5f, 0);
 	this->InitScoreText(leftScoreText, std::to_string(leftScore));
 	this->InitScoreText(rightScoreText, std::to_string(rightScore));
-	leftScoreText.setPosition(RES_X / 4, 50);
-	rightScoreText.setPosition(RES_X *0.75, 50);
+	leftScoreText.setPosition(RES_X / 4.0f, 50.0f);
+	rightScoreText.setPosition(RES_X *0.75f, 50.0f);
 }
 
 void MainGame::InitScoreText(sf::Text& text, std::string s) {
@@ -53,20 +53,17 @@ void MainGame::InitScoreText(sf::Text& text, std::string s) {
 }
 
 void MainGame::Update(float dt) {
-	//printf("%f\n",dt);
 	deltaTime = dt;
-	
 	IsBallOutBound();
 	if (!hasBall) return;
 	ball->Update(dt);
 	leftPaddle.Update(dt, ball);
-	//printf("Update\n");
 	OnCollision(ball, leftPaddle);
 	OnCollision(ball, rightPaddle);
 }
 
 
-bool MainGame::IsBallOutBound() {
+void MainGame::IsBallOutBound() {
 	if (ball->ballState == Ball::OutRightBound) {
 		hasBall = false;
 		delete ball;
@@ -81,7 +78,6 @@ bool MainGame::IsBallOutBound() {
 			OnBallDestroy();
 		}
 	}
-	return !hasBall;
 }
 bool MainGame::UpdateScore(std::string pos) {
 	if (pos == "Left") {
@@ -108,9 +104,8 @@ void MainGame::OnCollision(Ball* ball, Paddle& paddle) {
 	float paddleX = paddle.GetPos().x;
 	float paddleY = paddle.GetPos().y;
 	float dis = (shapeY - paddleY) / paddle.HEIGHT;
-
+	//printf("dis:%f\n", dis);
 	if (ball->GetCircleShape().getGlobalBounds().intersects(paddle.GetRectShape().getGlobalBounds())) {
-		ballHasBouncedPlayerSide = true;
 		printf("Has Entered Collison\n");
 		ball->Accelerate();
 		if (shapeX - paddleX > 0) {
@@ -123,13 +118,13 @@ void MainGame::OnCollision(Ball* ball, Paddle& paddle) {
 				if (leftPaddle.isAI) {
 					leftPaddle.SetAIPaddleMoveDir(ball);
 				}
-				printf("Bouncing\n");
+				//printf("Bouncing\n");
 				ball->forceX = -1;
 			}
 		}
 		else if (shapeX - paddleX < 0) {
 			if (paddle.paddlePos == Paddle::right) {
-				printf("Bouncing\n");
+				//printf("Bouncing\n");
 				if (leftPaddle.isAI) {
 					leftPaddle.SetAIPaddleMoveDir(ball);
 				}
@@ -159,6 +154,5 @@ void MainGame::OnCollision(Ball* ball, Paddle& paddle) {
 		}
 
 	}
-	ballHasBouncedPlayerSide = false;
 	//printf("Has Exited Collison\n");
 }

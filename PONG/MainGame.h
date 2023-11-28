@@ -8,7 +8,6 @@ class MainGame: public GameState
 private:
 	int leftScore = 0;
 	int rightScore = 0;
-	bool ballHasBouncedPlayerSide = false;
 	sf::RectangleShape middleLine;
 	sf::Text leftScoreText;
 	sf::Text rightScoreText;
@@ -16,15 +15,16 @@ private:
 	float flashDuration = 1.0f; 
 	float flashTimer = 0.0f;   
 	bool isScoreVisible = true;
+	bool hasBall = true;
 	void InitVriables();
 	void InitPlayers();
 	void InitScoreText(sf::Text& text, std::string s);
 	void OnCollision(Ball* ball, Paddle& paddle);
-	bool IsBallOutBound();
+	void IsBallOutBound();
 	bool UpdateScore(std::string pos);
 	void OnBallDestroy();
 public:
-	bool hasBall = true;
+
 	Paddle leftPaddle;
 	Paddle rightPaddle;
 	Ball* ball = new Ball();

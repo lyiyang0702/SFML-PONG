@@ -9,10 +9,9 @@ private:
 	const float START_SPEED = 200.0f;
 	const float MAX_SPEED = 1000.0f;
 	const float RADIUS = 10.0f;
-	const float PI = 3.1415926;
-	//const float START_RADIAN = PI / 4;
+	const float PI = 3.1415926f;
 	const float START_RADIAN = PI / 4;
-	float acceleration = 20.0f;
+	float acceleration = 50.0f;
 	float stillDuration = 0.5f;
 	float stillTimer = 0.0f;
 public:

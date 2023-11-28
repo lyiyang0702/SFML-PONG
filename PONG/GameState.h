@@ -24,8 +24,8 @@ public:
 			printf("ERROR:Font loading failed!\n");
 			return;
 		}
-		RES_X = window->getSize().x;
-		RES_Y = window->getSize().y;
+		RES_X = (float)window->getSize().x;
+		RES_Y = (float)window->getSize().y;
 
 	};
 	virtual ~GameState() {

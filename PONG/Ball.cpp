@@ -15,6 +15,7 @@ void Ball::Init(float resX, float resY) {
 }
 
 void Ball::Accelerate() {
+	printf("SPEED UP\n");
 	speed += acceleration;
 	if (speed > MAX_SPEED) {
 		speed = MAX_SPEED;

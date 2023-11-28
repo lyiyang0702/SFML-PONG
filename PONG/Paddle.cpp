@@ -43,10 +43,10 @@ void Paddle::Init(float resX, float resY, ScreenPos pos) {
 	}
 	paddlePos = pos;
 	if (pos == ScreenPos::left) {
-		rectShape.setPosition(SCREEN_OFFSET, resY / 2.);
+		rectShape.setPosition(SCREEN_OFFSET, resY / 2.0f);
 	}
 	else if (pos == ScreenPos::right) {
-		rectShape.setPosition(resX - SCREEN_OFFSET, resY / 2.);
+		rectShape.setPosition(resX - SCREEN_OFFSET, resY / 2.0f);
 	}
 }
 void Paddle::BoundMovable(float resoultionX, float resolutionY) {
